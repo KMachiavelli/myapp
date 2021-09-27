@@ -19,7 +19,7 @@ border-right: transparent 6px solid;
 color: var(--cream-white);
 text-decoration-color: red;
 text-align: center;
-transition: 0.5s;
+transition: 0.4s;
 :hover {
     background: var(--light-blue);
     border-radius: 0px 0px 0px 0px;

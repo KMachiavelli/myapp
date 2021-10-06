@@ -3,6 +3,7 @@ import BoxWeather from '../components/BoxWeather/BoxWeather'
 import { useFetch } from '../customHooks/useFetch'
 import { myURLs } from '../assets/urls/urls'
 import weatherBackup from '../assets/backup/backupWeather.json';
+import { StyledWeather } from './WeatherStyles';
 
 interface fetchDataI {
   obj: any;
@@ -61,7 +62,8 @@ const Weather = () => {
 
 
     return (
-        <>
+        <StyledWeather>
+
         {!weatherData && <div>
             <BoxWeather 
             name={weatherDataLocation.name} 
@@ -80,7 +82,7 @@ const Weather = () => {
             weatherIcon={weatherDataCurrent.weather_icons} 
             weatherIconDescription={weatherDataCurrent.weather_descriptions} />}
         </div>}
-        </>
+        </ StyledWeather> 
     )
 }
 

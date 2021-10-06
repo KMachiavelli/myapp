@@ -50,7 +50,7 @@ export const Content = styled.div`
   font-weight: bold;
   text-align: justify;
   margin: 10px;
-  height: 90%;
+  // height: 90%;
 `;
 
 

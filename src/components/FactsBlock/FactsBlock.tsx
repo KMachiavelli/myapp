@@ -10,7 +10,7 @@ interface fetchData {
   loading: boolean;
 }
 
-const dogOptions = {
+const catOptions = {
     method: "GET",
     headers: {
       
@@ -19,8 +19,8 @@ const dogOptions = {
 
 const FactsBlock = () => {
   const [loadNext, setLoadNext] = useState(false);
-  const {obj: myobj, loading: isLoading}: fetchData = useFetch(myURLs.dogPics, loadNext,
-    {...dogOptions}, {accessKey:" ", query: " "}, true);
+  const {obj: myobj, loading: isLoading}: fetchData = useFetch(myURLs.catFacts, loadNext,
+    {...catOptions}, {accessKey:" ", query: " "}, true);
   const [loadingDisplay, setLoadingDisplay] = useState(true);
 
   useEffect(()=>{
@@ -38,7 +38,7 @@ const FactsBlock = () => {
           <h1>Did you know?</h1>
         </Title>
         <Content>
-          {(isLoading && !loadingDisplay) && <img src={myobj.message} />}
+          {(isLoading && !loadingDisplay) && myobj.fact}
           {loadingDisplay ? <img src={iconLoading} className='spinning'/> : ''}
         </Content>
           <Button buttonText = "NEXT" clickHandle={nextFact} />

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { BreakPointI } from '../Navbar/Navbar';
+import { ButtonI } from './Button';
 
-export const StyledButton =  styled.button`
+export const StyledButton =  styled.button<BreakPointI>`
   width: 150px;
   height: fit-content;
   background-color: var(--dark-blue);
@@ -9,9 +11,19 @@ export const StyledButton =  styled.button`
   text-align: center;
   border: hidden;
   border-radius: 5px;
+  cursor: pointer;
 
    :hover {
-    transition: 0.3s ease-in-out;
+    transition: 0.1s ease-in-out;
     background-color: var(--light-blue);
-  }
+    }
+
+    :active {
+      width: 160px;
+    }
+
+    ${props => props.breakpoint && `
+      width: 100px;
+      font-size: 20px;
+    `};
 `;

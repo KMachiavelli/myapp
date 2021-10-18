@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import BoxWeather from '../components/BoxWeather/BoxWeather'
 import { useFetch } from '../customHooks/useFetch'
 import { myURLs } from '../assets/urls/urls'
@@ -17,7 +17,7 @@ const weatherOptions = {
     },
     parameters: {
         accessKey: `?access_key=`+process.env.REACT_APP_API_KEY_WEATHER,
-        query: "&query=Berlin",
+        query: "",
     }
   };
 
@@ -37,18 +37,21 @@ const shouldUseAPI = false;
 
 const Weather = () => {
 
-    const [loadNext, setLoadNext] =useState(false);
+    const [loadNext, setLoadNext] = useState(false);
+        const [newWeatherParameters, setNewWeatherParameters] = useState({accessKey: `?access_key=`+process.env.REACT_APP_API_KEY_WEATHER,
+        query: "&query=Warsaw"});
     var {obj: weatherData, loading: weatherLoading}: fetchDataI = useFetch(myURLs.weatherCurrent, loadNext,
-         weatherOptions, weatherOptions.parameters, shouldUseAPI);
+         {...weatherOptions}, newWeatherParameters, shouldUseAPI, false);
     const [weatherDataLocation, setWeatherDataLocation] = useState({name: "", country: "", localTime: new Date()});
     const [weatherDataCurrent, setWeatherDataCurrent] = useState({temperature: 0, weather_icons: [''], weather_descriptions: ['']});
+    const inputWeatherRef = useRef();
     
     useEffect(()=>{
         if(weatherData!==undefined) {
         setWeatherDataCurrent({...weatherData.current});
         setWeatherDataLocation({...weatherData.location});
         }  
-    },[weatherLoading]);
+    },[weatherLoading, newWeatherParameters]);
 
     useEffect(()=>{
          setWeatherDataCurrent({temperature: weatherBackup.current.temperature,
@@ -58,21 +61,47 @@ const Weather = () => {
                 country: weatherBackup.location.country,
                 localTime: new Date(weatherBackup.location.localtime)});
                 console.log(weatherBackup.current.weather_icons);
+                setLoadNext(!loadNext);
     },[])
 
+    const submitWeather = () => {
+        if(inputWeatherRef.current) {
+        console.log(inputWeatherRef.current['value']);
+        setNewWeatherParameters((params)=>{
+            if(inputWeatherRef.current) {
+            console.log({...params, query: "&query=" + inputWeatherRef!.current['value']});
+            return {...params, query: "&query=" + inputWeatherRef!.current['value']};
+            }
+            else return params;
+        });
+        };
+        setLoadNext(!loadNext);
+        setWeatherDataCurrent({...weatherData.current});
+        setWeatherDataLocation({...weatherData.location});
+        setWeatherDataCurrent({temperature: weatherBackup.current.temperature,
+                weather_icons: weatherBackup.current.weather_icons,
+                weather_descriptions: weatherBackup.current.weather_descriptions});
+            setWeatherDataLocation({name: weatherBackup.location.name,
+                country: weatherBackup.location.country,
+                localTime: new Date(weatherBackup.location.localtime)});
+                console.log(weatherBackup.current.weather_icons);
+                console.log(weatherData);
+    };
 
     return (
         <StyledWeather>
 
-        {!weatherData && <div>
+        {/* {!weatherData && <div>
             <BoxWeather 
             name={weatherDataLocation.name} 
             country={weatherDataLocation.country} 
             localTime={weatherDataLocation.localTime} 
             temperature={weatherDataCurrent.temperature} 
             weatherIcon={weatherDataCurrent.weather_icons} 
-            weatherIconDescription={weatherDataCurrent.weather_descriptions} />
-        </div>}
+            weatherIconDescription={weatherDataCurrent.weather_descriptions}
+            inputRef={inputWeatherRef}
+            submitWeather={submitWeather} />
+        </div>} */}
         {weatherData && <div>
             {weatherLoading && <BoxWeather 
             name={weatherDataLocation.name} 
@@ -80,8 +109,11 @@ const Weather = () => {
             localTime={weatherDataLocation.localTime} 
             temperature={weatherDataCurrent.temperature} 
             weatherIcon={weatherDataCurrent.weather_icons} 
-            weatherIconDescription={weatherDataCurrent.weather_descriptions} />}
+            weatherIconDescription={weatherDataCurrent.weather_descriptions} 
+            inputRef={inputWeatherRef}
+            submitWeather={submitWeather} />}
         </div>}
+        {!weatherData && <div>AAAAAAAAAAAAAAAAAAA</div>}
         </ StyledWeather> 
     )
 }

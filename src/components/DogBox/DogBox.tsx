@@ -1,10 +1,12 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { BreakPointContext } from '../../App'
 import { myURLs } from '../../assets/urls/urls'
 import { useFetch } from '../../customHooks/useFetch'
 import Button from '../Button/Button'
 import { BreakPointI } from '../Navbar/Navbar'
-import { StyledDogBox, StyledDogPicture, StyledGuessSection, StyledVerify } from './DogBoxStyles'
+import { DogImage, InputDogsName, KorrektImage, StyledDogBox, StyledDogPicture, StyledGuessSection } from './DogBoxStyles'
+import iconOK from '../../assets/icons/icon-ok-darkblue.svg'
+import iconReject from '../../assets/icons/icon-reject-darkblue.svg'
 
 const dogOptions = {
     method: "GET",
@@ -18,8 +20,9 @@ export interface DogBoxI extends BreakPointI{
 const DogBox = () => {
     const [loadNext, setLoadNext] = useState(false);
     const {obj: dogData, loading: isLoading} = useFetch(myURLs.dogPics, loadNext, {...dogOptions}, 
-        dogOptions.parameters, true);
+        dogOptions.parameters, true, true);
     const [isCorrect, setIsCorrect] = useState(false);
+    const [guessCounter, setGuessCounter] = useState(0);
     const nameRef: any = useRef(null);
     const isMobile = useContext(BreakPointContext);
 
@@ -29,30 +32,29 @@ const DogBox = () => {
     }
 
     const checkName = (guessedName?: string) => {
-        if(nameRef.current.value === process.env.REACT_APP_GUESS_NAME)
+        if(nameRef.current.value === process.env.REACT_APP_GUESS_NAME) 
             setIsCorrect(true);
-        
         else setIsCorrect(false);
+        setGuessCounter(guessCounter + 1);
+    }    
 
-        console.log(process.env.REACT_APP_GUESS_NAME);
-        console.log(nameRef.current.value);
+    const isWrong = () => {
+        if(!isCorrect && guessCounter) // Nie moze byc w return bo zwraca 0 w html/JSX
+        return true;
+        else return false;
     }
 
-    const onChangeHandle = () => {
-
-    }
-
-    
     return (
         <StyledDogBox breakpoint={isMobile}>
             <StyledDogPicture>
             <h1>GUESS THIS DOG'S NAME</h1> <br/>
-            {isLoading && <img src={dogData.message} />}
+            {isLoading && <DogImage src={dogData.message} breakpoint={isMobile}/>}
             </StyledDogPicture>
             <StyledGuessSection>
-            <input type="text" onChange={onChangeHandle} ref={nameRef} placeholder="DOG'S NAME"></input>
+            <InputDogsName type="text" ref={nameRef} placeholder="DOG'S NAME" />
             </ StyledGuessSection>
-            {isCorrect && <StyledVerify><h2>Oll Korrekt</h2> </StyledVerify>}
+            {isCorrect && <KorrektImage src={iconOK} />}
+            {isWrong() && <KorrektImage src={iconReject} />}
             <Button clickHandle={nextDog} buttonText="NEXT DOG" />   
         </StyledDogBox>
     )

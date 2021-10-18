@@ -10,6 +10,7 @@ import Weather from './pages/Weather';
 import Dogs from './pages/Dogs';
 import Cats from './pages/Cats';
 import { isMobile } from './customHooks/useBreakpoint';
+import Books from './pages/Books';
 
 export const BreakPointContext = createContext(false);
 function App() {
@@ -34,6 +35,9 @@ function App() {
         </Route>
         <Route exact path="/page3">
           <Weather />
+        </Route>
+        <Route exact path="/page4">
+          <Books />
         </Route>
         <Route exact path="/siteddddd4">
           <TestSite />

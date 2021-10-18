@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { StyledButton } from "../Button/ButtonStyles";
+import { BreakPointI } from "../Navbar/Navbar";
 import { DogBoxI } from "./DogBox";
 
 export const StyledDogBox = styled.div<DogBoxI>`
@@ -7,9 +8,8 @@ height: 100vh;
 min-height: 700px;
 max-height: 900px;
 width: 100%;
-border-left: 10px dotted var(--light-blue);
 display: grid;
-grid-template-rows: repeat(11, 11fr);
+grid-template-rows: repeat(11, 1fr);
 overflow-y: auto;
 
     & h1 {
@@ -20,17 +20,6 @@ overflow-y: auto;
     margin-bottom: 0;
     }   
 
-        & img {
-        height: 60%;
-        min-height: 300px;
-        border-radius: 15px;
-        box-shadow: 15px 15px 30px var(--dark-blue);
-        position: relative;
-        left: 50%;
-        transform: translate(-50%, 0);
-        filter: grayscale(75%);
-    }
-
 & ${StyledButton} {
     grid-row: 11 / 11;
     position: relative;
@@ -40,15 +29,9 @@ overflow-y: auto;
 }
 
 ${props => props.breakpoint && `
-
     border-left: hidden;
     h1{
         font-size: 40px;
-    }
-
-    img {
-        width: 90%;
-        min-width: 230px;
     }
 `};
 
@@ -56,14 +39,10 @@ ${props => props.breakpoint && `
 
 export const StyledDogPicture = styled.div`
     grid-row: 1/9;   
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between; */ 
-
 `;
 
 export const StyledGuessSection = styled.div`
-    grid-row: 10/11;
+    grid-row: 9/10;
     position: relative;
     left: 50%;
     width: 100%;
@@ -90,10 +69,31 @@ export const StyledGuessSection = styled.div`
     }
 `;
 
-export const StyledVerify = styled.div`
-grid-row: 9/10;
+export const DogImage = styled.img<BreakPointI>`
+    height: 60%;
+    min-height: 300px;
+    border-radius: 15px;
+    box-shadow: 15px 15px 30px var(--dark-blue);
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    filter: grayscale(75%);
 
-    text-align: center;
-    color: var(--light-blue);
+    ${props => props.breakpoint && `
+        width: 90%;
+        min-width: 230px;
+        `
+    }
+    
+`;
 
+export const KorrektImage = styled.img`
+    width: 50px;
+    height: 50px;
+    grid-row: 10/11;
+    justify-self: center;
+`;
+
+export const InputDogsName = styled.input`
+    justify-self: center;
 `;

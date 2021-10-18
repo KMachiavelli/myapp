@@ -29,7 +29,7 @@ const TestSite = () => {
 
     const [loadNext, setLoadNext] = useState(true);
 
-    const {obj: myobj, loading: isLoading}: fetchData = useFetch(`http://api.weatherstack.com/current`, loadNext, weatherOptions, weatherOptions.parameters, false);
+    const {obj: myobj, loading: isLoading}: fetchData = useFetch(`http://api.weatherstack.com/current`, loadNext, weatherOptions, weatherOptions.parameters, false, false);
 
     return (
         <div>

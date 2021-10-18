@@ -69,6 +69,7 @@ export const DropDown = styled.div`
   padding: 10px; */
 `;
 
+
 export const SectionTitle = styled.div<SectionTitleI>`
   border-bottom: var(--light-blue) 3px solid;
   border-top: transparent 3px solid;
@@ -80,6 +81,7 @@ export const SectionTitle = styled.div<SectionTitleI>`
   justify-content: space-around;
   transition: 0.4s;
   :hover {
+
     background: var(--light-blue);
     border-radius: 0px 0px 0px 0px;
     border-bottom: transparent 3px solid;

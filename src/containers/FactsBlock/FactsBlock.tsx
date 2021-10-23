@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { myURLs } from "../../assets/urls/urls";
-import Button from "../Button/Button";
+import Button from "../../components/Button/Button";
 import { useFetch } from "../../customHooks/useFetch";
 import { StyledFactsBlock, Title, Content } from "./FactsBlockStyles";
 import iconLoading from "../../assets/icons/icon-loading.svg";
-import { BreakPointI } from "../Navbar/Navbar";
+import { BreakPointI } from "../../components/Navbar/Navbar";
 import { BreakPointContext } from "../../App";
 import bgCat from "../../assets/background-imgs/bg-cat.svg";
-import CloseButton from "../CloseButton/CloseButton";
+import CloseButton from "../../components/CloseButton/CloseButton";
 
 interface fetchData {
   obj: any;

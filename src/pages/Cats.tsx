@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Blurred } from "../AppStyles";
 import Button from "../components/Button/Button";
 import { StyledButton } from "../components/Button/ButtonStyles";
-import CatBox from "../components/CatBox/CatBox";
-import FactsBlock from "../components/FactsBlock/FactsBlock";
+import CatBox from "../containers/CatBox/CatBox";
+import FactsBlock from "../containers/FactsBlock/FactsBlock";
 import {
   DivideLine,
   Section,
   StyledCats,
   InsideSectionContent,
-  ModalWrapper,
+  ModalCatWrapper,
 } from "./CatsStyles";
 
 const Cats = () => {
@@ -22,6 +22,11 @@ const Cats = () => {
 
   const picsToggle = () => {
     setIsPicsModalOn(!isPicsModalOn);
+  };
+
+  const closeBoth = () => {
+    setIsFactsModalOn(false);
+    setIsPicsModalOn(false);
   };
 
   return (
@@ -41,17 +46,17 @@ const Cats = () => {
           </InsideSectionContent>
         </Section>
         {(isFactsModalOn || isPicsModalOn) && (
-          <Blurred blur={isFactsModalOn || isPicsModalOn} />
+          <Blurred blur={isFactsModalOn || isPicsModalOn} onClick={closeBoth} />
         )}
         {isFactsModalOn && (
-          <ModalWrapper>
+          <ModalCatWrapper>
             <FactsBlock closePopup={factsToggle} />
-          </ModalWrapper>
+          </ModalCatWrapper>
         )}
         {isPicsModalOn && (
-          <ModalWrapper>
+          <ModalCatWrapper>
             <CatBox closeMethod={picsToggle} />
-          </ModalWrapper>
+          </ModalCatWrapper>
         )}
       </StyledCats>
     </>

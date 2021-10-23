@@ -11,6 +11,8 @@ export const StyledContent = styled.div`
 export const StyledApp = styled.div<{ breakpoint: boolean }>`
   width: 100vw;
   height: 100vh;
+  background: var(--ghost-white);
+  font-size: 16px;
 
   ${(props) =>
     !props.breakpoint &&
@@ -40,7 +42,12 @@ export const StyledApp = styled.div<{ breakpoint: boolean }>`
 `}
 `;
 
-export const Blurred = styled.div<{ blur: boolean }>`
+export interface BlurredI {
+  blur: boolean;
+  clickHandle?: () => void;
+}
+
+export const Blurred = styled.div<BlurredI>`
   ${(props) =>
     props.blur &&
     `   visibility: visible;
@@ -49,7 +56,7 @@ export const Blurred = styled.div<{ blur: boolean }>`
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 100;
-        width: 110%;
+        width: 105%;
         height: 100%;
         overflow: none;
         background: transparent;

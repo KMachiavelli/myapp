@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { StyledButton } from "../Button/ButtonStyles";
-import { StyledCloseButton } from "../CloseButton/CloseButtonStyles";
+import { StyledButton } from "../../components/Button/ButtonStyles";
+import { StyledCloseButton } from "../../components/CloseButton/CloseButtonStyles";
 
 export const StyledCatPic = styled.div`
-  height: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

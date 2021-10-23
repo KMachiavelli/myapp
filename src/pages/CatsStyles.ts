@@ -58,9 +58,9 @@ export const InsideSectionContent = styled.div`
   }
 `;
 
-export const ModalWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+export const ModalCatWrapper = styled.div`
+  width: 70%;
+  height: 70%;
   position: absolute;
   top: 50%;
   left: 50%;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { myURLs } from "../../assets/urls/urls";
 import { useFetch } from "../../customHooks/useFetch";
-import Button from "../Button/Button";
-import CloseButton from "../CloseButton/CloseButton";
+import Button from "../../components/Button/Button";
+import CloseButton from "../../components/CloseButton/CloseButton";
 import { StyledCatPic } from "./CatBoxStyles";
 
 const catOptions = {

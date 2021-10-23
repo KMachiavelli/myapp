@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { StyledButton } from "../Button/ButtonStyles";
-import { StyledCloseButton } from "../CloseButton/CloseButtonStyles";
+import { StyledButton } from "../../components/Button/ButtonStyles";
+import { StyledCloseButton } from "../../components/CloseButton/CloseButtonStyles";
 import { StyledFactsBlockI } from "./FactsBlock";
 
 export const StyledFactsBlock = styled.div<StyledFactsBlockI>`
   position: relative;
-  width: 70%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
   background: var(--dark-blue);
   background-image: url(${(props) => props.srcBckg});
   background-repeat: no-repeat;

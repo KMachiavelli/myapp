@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { BreakPointContext } from '../../App';
 import '../../assets/colors.css'
 import { StyledButton } from './ButtonStyles';
 
-interface ButtonI {
+export interface ButtonI {
     clickHandle: any;
     buttonText: string;
 }
 
 const Button = (props : ButtonI) => {
+    const breakPointContext = useContext(BreakPointContext);
     return (
-            <StyledButton onClick={props.clickHandle}>{props.buttonText}</StyledButton>       
+            <StyledButton onClick={props.clickHandle} breakpoint={breakPointContext}>{props.buttonText}</StyledButton>       
     )
 }
 

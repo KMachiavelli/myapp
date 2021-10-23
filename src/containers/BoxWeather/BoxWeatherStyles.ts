@@ -40,3 +40,7 @@ export const StyledBottom = styled.div`
         box-shadow: 2px 2px 1px 1px var(--light-blue);
     }
 `;
+
+export const InputWrapper = styled.div`
+    background: red;
+`;

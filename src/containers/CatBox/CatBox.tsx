@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { myURLs } from "../../assets/urls/urls";
 import { useFetch } from "../../customHooks/useFetch";
 import Button from "../../components/Button/Button";
 import CloseButton from "../../components/CloseButton/CloseButton";
 import { StyledCatPic } from "./CatBoxStyles";
+import { BreakPointContext } from "../../App";
 
 const catOptions = {
   method: "GET", // *GET, POST, PUT, DELETE, etc.

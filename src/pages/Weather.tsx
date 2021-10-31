@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import BoxWeather from "../containers/BoxWeather/BoxWeather";
 import { useFetch } from "../customHooks/useFetch";
 import { myURLs } from "../assets/urls/urls";
 import weatherBackup from "../assets/backup/backupWeather.json";
 import { StyledWeather } from "./WeatherStyles";
+import { BreakPointContext } from "../App";
 
 interface fetchDataI {
   obj: any;
@@ -59,6 +60,7 @@ const Weather = () => {
     weather_descriptions: [""],
   });
   const inputWeatherRef = useRef();
+  const breakPointContext = useContext(BreakPointContext);
 
   useEffect(() => {
     if (weatherData !== undefined) {

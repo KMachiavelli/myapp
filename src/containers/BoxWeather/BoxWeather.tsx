@@ -1,4 +1,11 @@
-import React, { LegacyRef, useRef, createRef, RefObject } from "react";
+import React, {
+  LegacyRef,
+  useRef,
+  createRef,
+  RefObject,
+  useContext,
+} from "react";
+import { BreakPointContext } from "../../App";
 import Button from "../../components/Button/Button";
 import {
   InputWrapper,

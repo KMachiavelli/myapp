@@ -6,6 +6,7 @@ const myURLs = {
     weatherCurrent: `http://api.weatherstack.com/current`,
     books: `https://424823f4-928c-4c89-8d69-7ca6b0e8183c.mock.pstmn.io`,
     catImages: 'https://api.thecatapi.com/v1/images/search',
+    local: 'http://127.0.0.1:8080'
 }
 
 export {myURLs};

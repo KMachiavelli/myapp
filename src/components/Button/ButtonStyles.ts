@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { BreakPointI } from "../Navbar/Navbar";
-import { ButtonI } from "./Button";
+import { ButtonI, StyledButtonI } from "./Button";
 
-export const StyledButton = styled.button<BreakPointI>`
+export const StyledButton = styled.button<StyledButtonI>`
   width: 150px;
   height: fit-content;
   background-color: var(--dark-blue);
@@ -27,5 +27,18 @@ export const StyledButton = styled.button<BreakPointI>`
     `
       width: 100px;
       font-size: 20px;
+    `};
+
+  ${(props) =>
+    props.isAltered &&
+    `
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+    border: hidden;
+      :hover {
+        background-color: var(--dark-medium-blue);
+        color: var(--light-blue);
+        outline: var(--light-blue) 3px solid;
+      }
     `};
 `;

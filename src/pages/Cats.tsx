@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { BreakPointContext } from "../App";
 import { Blurred } from "../AppStyles";
 import Button from "../components/Button/Button";
 import { StyledButton } from "../components/Button/ButtonStyles";
@@ -11,6 +12,7 @@ import {
   InsideSectionContent,
   ModalCatWrapper,
 } from "./CatsStyles";
+import iconCatBackground from "../assets/icons/icon-standing-cat.svg";
 
 const Cats = () => {
   const [isFactsModalOn, setIsFactsModalOn] = useState(false);
@@ -31,23 +33,29 @@ const Cats = () => {
 
   return (
     <>
-      <StyledCats>
+      <StyledCats bckSrc={iconCatBackground}>
         <Section>
           <InsideSectionContent>
             <h1>IF U WANT TO SEE NEW COOL CAT PICS</h1>
-            <Button clickHandle={picsToggle} buttonText={"CLICK HERE"} />
+            <Button
+              clickHandle={picsToggle}
+              buttonText={"CLICK HERE"}
+              isAltered={true}
+            />
           </InsideSectionContent>
         </Section>
         <DivideLine />
         <Section>
           <InsideSectionContent>
             <h1>IF U WANT TO KNOW NEW CAT FACTS</h1>
-            <Button clickHandle={factsToggle} buttonText={"CLICK HERE"} />
+            <Button
+              clickHandle={factsToggle}
+              buttonText={"CLICK HERE"}
+              isAltered={true}
+            />
           </InsideSectionContent>
         </Section>
-        {(isFactsModalOn || isPicsModalOn) && (
-          <Blurred blur={isFactsModalOn || isPicsModalOn} onClick={closeBoth} />
-        )}
+        <Blurred blur={isFactsModalOn || isPicsModalOn} onClick={closeBoth} />
         {isFactsModalOn && (
           <ModalCatWrapper>
             <FactsBlock closePopup={factsToggle} />
